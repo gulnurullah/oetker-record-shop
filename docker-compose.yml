@@ -1,0 +1,43 @@
+version: '3'
+services:
+    apache:
+        build: .docker/apache
+        container_name: oetker_apache
+        ports:
+          - 80:80
+        volumes:
+          - .docker/config/vhosts:/etc/apache2/sites-enabled
+          - .:/home/wwwroot/oetker-record-shop
+        depends_on:
+          - php
+
+    mysql:
+        image: mysql
+        command: "--default-authentication-plugin=mysql_native_password"
+        container_name: oetker_mysql
+        volumes:
+            - .docker/data/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: oetker
+            MYSQL_USER: sf4
+            MYSQL_PASSWORD: sf4
+
+    php:
+        build: .docker/php
+        container_name: oetker_php
+        volumes:
+          - .:/home/wwwroot/oetker-record-shop
+        depends_on:
+          - mysql
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: oetker_phpmyadmin
+        environment:
+          PMA_HOST: mysql
+          PMA_PORT: 3306
+        ports:
+            - 8080:80
+        links:
+            - mysql
