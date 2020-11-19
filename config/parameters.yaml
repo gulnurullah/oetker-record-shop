@@ -1,0 +1,3 @@
+parameters:
+  locale: 'tr'
+  app.locales: tr|en|fr|de|el|ru|ar
