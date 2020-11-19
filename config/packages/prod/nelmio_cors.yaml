@@ -1,0 +1,4 @@
+nelmio_cors:
+    defaults:
+        allow_origin:
+            - '^https?://%env(resolve:CORS_ALLOW_ORIGIN)%'
