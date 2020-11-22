@@ -55,7 +55,7 @@ class RecordRepository extends ServiceEntityRepository
         return $list;
     }
 
-    public function searchRecords(string $query): array
+    public function searchRecords(string $query, int $limit = null, int $offset = null): array
     {
         $recordList = $this->createQueryBuilder('r')
             ->orWhere('r.name LIKE :query')
@@ -64,6 +64,8 @@ class RecordRepository extends ServiceEntityRepository
             ->setParameter('query', '%'.$query.'%')
             ->addOrderBy('r.artist', 'ASC')
             ->addOrderBy('r.name', 'ASC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
             ->getQuery()
             ->execute();
 
