@@ -1,0 +1,21 @@
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin:
+            - '^https?://localhost:[0-9]+$'
+        allow_credentials: true
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'DELETE']
+        allow_headers:
+            - 'DNT'
+            - 'X-Mx-ReqToken'
+            - 'Keep-Alive'
+            - 'User-Agent'
+            - 'X-Requested-With'
+            - 'If-Modified-Since'
+            - 'Cache-Control'
+            - 'Origin'
+            - 'Content-Type'
+            - 'Accept'
+        max_age: 3600
+    paths:
+        '^/': ~
