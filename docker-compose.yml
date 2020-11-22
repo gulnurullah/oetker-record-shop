@@ -7,7 +7,7 @@ services:
           - 80:80
         volumes:
           - .docker/config/vhosts:/etc/apache2/sites-enabled
-          - .:/home/wwwroot/oetker-record-shop
+          - .:/home/wwwroot/oetker
         depends_on:
           - php
 
@@ -20,14 +20,14 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: oetker
-            MYSQL_USER: sf4
-            MYSQL_PASSWORD: sf4
+            MYSQL_USER: user
+            MYSQL_PASSWORD: userpw
 
     php:
         build: .docker/php
         container_name: oetker_php
         volumes:
-          - .:/home/wwwroot/oetker-record-shop
+          - .:/home/wwwroot/oetker
         depends_on:
           - mysql
 
