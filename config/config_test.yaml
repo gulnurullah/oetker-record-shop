@@ -1,0 +1,6 @@
+doctrine:
+  dbal:
+    host:     localhost
+    dbname:   testdb
+    user:     testdb
+    password: testdb

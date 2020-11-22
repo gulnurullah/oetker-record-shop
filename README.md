@@ -23,7 +23,7 @@ docker-compose up -d
 After all services created than you are ready to enter your php container
 
 ```
-docker exec -it -u dev oetker_record_shop_php bash
+docker exec -it -u dev oetker_php bash
 ```
 
 After you enter your php container than run as below commands

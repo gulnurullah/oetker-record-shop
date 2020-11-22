@@ -7,6 +7,7 @@
         "php": "^7.4.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "beberlei/doctrineextensions": "^1.2",
         "jms/serializer-bundle": "^3.7",
         "nelmio/api-doc-bundle": "^3.3",
@@ -20,17 +21,18 @@
         "symfony/framework-bundle": "5.0.*",
         "symfony/monolog-bundle": "^3.5",
         "symfony/orm-pack": "^1.0",
-        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/security-bundle": "5.0.*",
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fzaninotto/faker": "^1.9",
         "phpstan/phpstan-symfony": "^0.12.6",
         "symfony/browser-kit": "5.0.*",
         "symfony/maker-bundle": "^1.19",
         "symfony/phpunit-bridge": "^5.1",
         "symfony/profiler-pack": "^1.0",
+        "symfony/validator": "5.0.*",
         "symfony/var-dumper": "5.0.*"
     },
     "config": {
