@@ -7,6 +7,8 @@ RUN apt-get update \
     zlib1g-dev \
     sudo
 
+RUN apt-get install -y libzip-dev
+
 RUN docker-php-ext-install pdo pdo_mysql zip
 
 COPY php.ini /usr/local/etc/php/php.ini
