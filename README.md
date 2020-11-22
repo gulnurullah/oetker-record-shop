@@ -1,4 +1,4 @@
-# Oetker Record Shop
+# Oldies But Goldies Berlin
 The vintage record shop 'Oldies but Goldies Berlin' needs a new website. 
 They want to have all their record collection available for their customers to be consulted online
 
@@ -9,6 +9,11 @@ The record list will be maintained by the shop administrators.
 In order to setup project you can use docker or local enviroment services
 * "docker" which's create all required services (PHP 7.4, Mysql , Phpmyadmin)
 * You can setup locally PHP 7.4 and mysql without docker
+
+## Clone project in your local or download it
+```
+https://github.com/gulnurullah/oetker-record-shop/tree/master
+```
 
 ## Setup Project with docker
 Go to project root directory and execute by order as below commands
@@ -53,7 +58,7 @@ localhost
 To see and test api endpoints with nelmio documentation you can visit as below url
 
 ```
-localhost/api/doc
+localhost/api/docu
 ```
 
 ## Tests
