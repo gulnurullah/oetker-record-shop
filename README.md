@@ -60,22 +60,11 @@ Careful, database "oetker" will be purged. Do you want to continue? (yes/no)
 ```
 
 ## Get started
-After setup the project here we are , its ready to visit on the browser
-
+After setup the project here we are , its ready to visit nelmio page .
+To see and test api endpoints with nelmio documentation you can visit as below url's
 ```
 localhost
-```
-
-Phpmyadmin accessible from below link
-
-```
-localhost:8080
-```
-
-## API Documentation
-To see and test api endpoints with nelmio documentation you can visit as below url
-
-```
+OR
 localhost/api/docu
 ```
 
@@ -85,6 +74,12 @@ This defined in the .env as encrypted (ADMIN_PASSWORD)
 This is only for testing purpose , it should be changed
 username : admin
 password : admin
+```
+
+Phpmyadmin accessible from below link
+
+```
+localhost:8080
 ```
 
 ## Tests

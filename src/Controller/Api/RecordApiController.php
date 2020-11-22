@@ -2,6 +2,7 @@
 
 namespace App\Controller\Api;
 
+use App\Enum\RequestParametersEnum;
 use App\Repository\RecordRepository;
 use App\Services\RecordService;
 use Psr\Log\LoggerInterface;
@@ -84,10 +85,10 @@ class RecordApiController extends AbstractController
      */
     public function getRecords(Request $request): JsonResponse {
 
-        $limit = (int) $request->get('limit', 20);
-        $offset = (int) $request->get('offset', 1);
+        $limit = (int) $request->get('limit', RequestParametersEnum::LIMIT);
+        $offset = (int) $request->get('offset', RequestParametersEnum::OFFSET);
 
-        if ($limit <= 0 || $offset <= 0) {
+        if ($limit <= 0 || $offset < 0) {
             return $this->jsonResponse(
                 false,
                 Response::HTTP_BAD_REQUEST,
@@ -123,6 +124,22 @@ class RecordApiController extends AbstractController
      *     required=true
      * )
      *
+     * @SWG\Parameter(
+     *     name="limit",
+     *     in="query",
+     *     type="integer",
+     *     description="The list limit",
+     *     required=false
+     * )
+     *
+     * @SWG\Parameter(
+     *     name="offset",
+     *     in="query",
+     *     type="integer",
+     *     description="The list offset",
+     *     required=false
+     * )
+     *
      * @SWG\Response(
      *     response="500",
      *     description="Server Error",
@@ -142,6 +159,16 @@ class RecordApiController extends AbstractController
     public function getSearchedRecords(Request $request): JsonResponse {
 
         $query = $request->get('query', null);
+        $limit = (int) $request->get('limit', RequestParametersEnum::LIMIT);
+        $offset = (int) $request->get('offset', RequestParametersEnum::OFFSET);
+
+        if ($limit <= 0 || $offset < 0) {
+            return $this->jsonResponse(
+                false,
+                Response::HTTP_BAD_REQUEST,
+                'Limit and offset should be numeric number.'
+            );
+        }
 
         if ($query === null) {
             return $this->jsonResponse(
@@ -151,7 +178,7 @@ class RecordApiController extends AbstractController
             );
         }
 
-        return $this->recordService->getResearchedRecords($query);
+        return $this->recordService->getResearchedRecords($query, $limit, $offset);
     }
 
     /**

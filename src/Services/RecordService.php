@@ -55,11 +55,13 @@ class RecordService
         }
     }
 
-    public function getResearchedRecords(string $query): JsonResponse {
+    public function getResearchedRecords(string $query, int $limit, int $offset): JsonResponse {
 
         try {
             $recordList = $this->recordRepository->searchRecords(
-                $query
+                $query,
+                $limit,
+                $offset
             );
 
             return $this->jsonResponse(true,Response::HTTP_OK,null, $recordList);
