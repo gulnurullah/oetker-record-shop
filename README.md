@@ -61,6 +61,14 @@ To see and test api endpoints with nelmio documentation you can visit as below u
 localhost/api/docu
 ```
 
+## API Credentials
+This defined in the .env as encrypted (ADMIN_PASSWORD)
+```
+This is only for testing purpose , it should be changed
+username : admin
+password : admin
+```
+
 ## Tests
 In order to run php unit test
 ```
@@ -72,8 +80,8 @@ In order to run phpstan for static code analyse
 composer php:phpstan
 ```
 
-## Php Lint
-In order to run php lint check
+## Linting check
+In order to run linting check
 ```
 composer build:lint
 ```

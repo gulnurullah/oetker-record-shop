@@ -1,10 +1,21 @@
 includes:
+	- vendor/phpstan/phpstan-doctrine/extension.neon
+	- vendor/phpstan/phpstan-doctrine/rules.neon
 	- vendor/phpstan/phpstan-phpunit/extension.neon
 	- vendor/phpstan/phpstan-symfony/extension.neon
-
 parameters:
-    symfony:
-        container_xml_path: '%currentWorkingDirectory%/var/cache/dev/srcApp_KernelDevDebugContainer.xml'
-    reportUnmatchedIgnoredErrors: false # for tests when we got newrelic
+    # Remove this config when it is possible to fix all the array types used in the project
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - '#Function newrelic_.* not found\.#'
+        # hard to figure out types in config-building, see https://github.com/phpstan/phpstan/issues/844
+        - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface::scalarNode\(\)#'
+    earlyTerminatingMethodCalls:
+        PHPUnit\Framework\Assert:
+            - fail
+    excludes_analyse:
+        - tests
+        - src/Migrations/*
+    symfony:
+        container_xml_path: '%rootDir%/../../../var/cache/dev/App_KernelDevDebugContainer.xml'

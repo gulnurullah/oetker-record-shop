@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -25,18 +25,19 @@ class RecordRepository extends ServiceEntityRepository
         $this->manager = $manager;
     }
 
-    public function saveRecord(string $name, string $description): void
+    public function saveRecord(string $name, string $artist, string $description): void
     {
         $newRecord = (new Record())
             ->setName($name)
             ->setDescription($description)
+            ->setArtist($artist)
             ->setCreatedAt(new DateTime('now'));
 
         $this->manager->persist($newRecord);
         $this->manager->flush();
     }
 
-    public function findByAsArray(array $criteria, array $orderBy = null, $limit = null, $offset = null): array
+    public function findByAsArray(array $criteria, array $orderBy = null, int $limit = null, int $offset = null): array
     {
         $recordList = $this->findBy(
             $criteria,

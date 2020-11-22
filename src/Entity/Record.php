@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RecordRepository;
 use Doctrine\ORM\Mapping as ORM;
+use \DateTimeInterface;
 
 /**
  * @ORM\Entity(repositoryClass=RecordRepository::class)
@@ -14,36 +15,50 @@ class Record
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $artist;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var DateTimeInterface
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var DateTimeInterface|null
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var DateTimeInterface|null
      */
     private $deletedAt;
 
@@ -97,7 +112,7 @@ class Record
     {
         $this->updatedAt = $updatedAt;
 
-
+        return $this;
     }
 
     public function getDeletedAt(): ?\DateTimeInterface
@@ -124,7 +139,7 @@ class Record
         return $this;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id' => $this->getId(),

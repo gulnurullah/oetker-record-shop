@@ -1,3 +1,3 @@
 parameters:
   locale: 'tr'
-  admin_password: 'JVX+VgHwOwQQwqqHyMCjxLJ2K4ZiGEpim1QdV2x6gWsAlkSbR4myjw=='
+  admin_password: '%env(ADMIN_PASSWORD)%'

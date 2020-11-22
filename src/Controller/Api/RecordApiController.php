@@ -87,7 +87,7 @@ class RecordApiController extends AbstractController
         $limit = (int) $request->get('limit', 20);
         $offset = (int) $request->get('offset', 1);
 
-        if (!is_numeric($limit) || !is_numeric($offset)) {
+        if ($limit <= 0 || $offset <= 0) {
             return $this->jsonResponse(
                 false,
                 Response::HTTP_BAD_REQUEST,
@@ -179,8 +179,9 @@ class RecordApiController extends AbstractController
      *     required=true,
      *     @SWG\Schema(
      *      type="object",
-     *      @SWG\Property(property="name", type="string", example="Record 1"),
-     *     @SWG\Property(property="description", type="string", example="New record published")
+     *      @SWG\Property(property="name", type="string", example="Record name"),
+     *      @SWG\Property(property="artist", type="string", example="Record artist name"),
+     *      @SWG\Property(property="description", type="string", example="The record description")
      *     ),
      * )
      *
@@ -205,9 +206,10 @@ class RecordApiController extends AbstractController
         $body = json_decode($request->getContent(), true);
 
         $recordName = $body['name'] ?? null;
+        $recordArtist = $body['artist'] ?? null;
         $recordDescription = $body['description'] ?? null;
 
-        if ($recordName === null || $recordDescription === null) {
+        if ($recordName === null || $recordDescription === null || $recordArtist === null) {
             return $this->jsonResponse(
                 false,
                 Response::HTTP_BAD_REQUEST,
@@ -215,7 +217,7 @@ class RecordApiController extends AbstractController
             );
         }
 
-        return $this->recordService->addRecord($recordName, $recordDescription);
+        return $this->recordService->addRecord($recordName, $recordArtist, $recordDescription);
     }
 
     /**
@@ -251,8 +253,9 @@ class RecordApiController extends AbstractController
      *     required=true,
      *     @SWG\Schema(
      *      type="object",
-     *      @SWG\Property(property="name", type="string", example="Record 1"),
-     *      @SWG\Property(property="description", type="string", example="New record published")
+     *      @SWG\Property(property="name", type="string", example="Record name"),
+     *      @SWG\Property(property="artist", type="string", example="Record artist"),
+     *      @SWG\Property(property="description", type="string", example="Record description")
      *     ),
      * )
      *
@@ -277,9 +280,10 @@ class RecordApiController extends AbstractController
         $body = json_decode($request->getContent(), true);
 
         $recordName = $body['name'] ?? null;
+        $recordArtist = $body['artist'] ?? null;
         $recordDescription = $body['description'] ?? null;
 
-        if ($id === null || $recordName === null || $recordDescription === null) {
+        if (!$id || $recordName === null || $recordArtist === null || $recordDescription === null) {
             return $this->jsonResponse(
                 false,
                 Response::HTTP_BAD_REQUEST,
@@ -287,7 +291,7 @@ class RecordApiController extends AbstractController
             );
         }
 
-        return $this->recordService->updateRecord($id, $recordName, $recordDescription);
+        return $this->recordService->updateRecord($id, $recordName, $recordArtist, $recordDescription);
     }
 
     /**
