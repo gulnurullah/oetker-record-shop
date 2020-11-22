@@ -31,6 +31,12 @@ After all services created than you are ready to enter your php container
 docker exec -it -u dev oetker_php bash
 ```
 
+Go to project directory
+
+```
+cd oetker
+```
+
 After you enter your php container than run as below commands
 ```
 composer install
@@ -41,23 +47,24 @@ To create database and execute migrations run as below commands
 composer setup:dev
 ```
 
-Load data fixtures for hotel and reviews
+Load data fixtures for records 
 ```
 php bin/console doctrine:fixtures:load
 ```
 
+Attention : After execute command below question will come 
+Answer: 'yes'
+
+```
+Careful, database "oetker" will be purged. Do you want to continue? (yes/no)
+```
 
 ## Get started
-After setup the project here we are , its ready to visit on the browser
-
+After setup the project here we are , its ready to visit nelmio page .
+To see and test api endpoints with nelmio documentation you can visit as below url's
 ```
 localhost
-```
-
-## API Documentation
-To see and test api endpoints with nelmio documentation you can visit as below url
-
-```
+OR
 localhost/api/docu
 ```
 
@@ -67,6 +74,12 @@ This defined in the .env as encrypted (ADMIN_PASSWORD)
 This is only for testing purpose , it should be changed
 username : admin
 password : admin
+```
+
+Phpmyadmin accessible from below link
+
+```
+localhost:8080
 ```
 
 ## Tests

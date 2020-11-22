@@ -4,6 +4,7 @@ namespace App\Tests\Controller;
 
 use App\Entity\Record;
 use App\Enum\JsonResponseEnum;
+use App\Enum\RequestParametersEnum;
 use App\Services\RecordService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -73,7 +74,10 @@ class RecordApiControllerTest extends WebTestCase
     public function testRecordGetAll(): void
     {
         /** @var JsonResponse $response */
-        $response = $this->recordService->getAllRecords(10, 0);
+        $response = $this->recordService->getAllRecords(
+            RequestParametersEnum::LIMIT,
+            RequestParametersEnum::OFFSET
+        );
         $responseArray = json_decode($response->getContent(), true);
 
         self::assertSame(200, $responseArray[JsonResponseEnum::CODE]);
@@ -83,7 +87,11 @@ class RecordApiControllerTest extends WebTestCase
     public function testSearchedAll(): void
     {
         /** @var JsonResponse $response */
-        $response = $this->recordService->getResearchedRecords('test');
+        $response = $this->recordService->getResearchedRecords(
+            'test',
+            RequestParametersEnum::LIMIT,
+            RequestParametersEnum::OFFSET
+        );
         $responseArray = json_decode($response->getContent(), true);
 
         self::assertSame(200, $responseArray[JsonResponseEnum::CODE]);
