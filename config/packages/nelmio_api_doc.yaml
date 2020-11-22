@@ -1,10 +1,9 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: Analystic Tool
-            description: Analystic Tool v1
+            title: Oldies But Goldies Berlin
+            description: Oldies But Goldies Berlin Documentation
             version: 1.0.0
     areas:
         path_patterns: # an array of regexps
-            - ^/api(?!/doc$)
-
+            - ^/api(?!/docu)

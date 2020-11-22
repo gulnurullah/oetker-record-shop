@@ -91,7 +91,7 @@
     "repositories": {
         "phpunit-bridge": {
             "type": "path",
-            "url": "/home/wwwroot/sf4/vendor/symfony/phpunit-bridge"
+            "url": "/home/wwwroot/oetker/vendor/symfony/phpunit-bridge"
         }
     }
 }
